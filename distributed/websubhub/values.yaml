@@ -5,7 +5,48 @@ deployment:
     pullPolicy: IfNotPresent
     tag: 1.0.0-M1
   config:
-
+    server:
+      port: 9000
+      id: "websubhub-1"
+      secureSocket:
+        enabled: true
+        keystore:
+          path: "conf/resources/wso2websubhub.jks"
+          password: "password"
+    state:
+      snapshot:
+        url: "http://localhost:10001"
+      events:
+        topic: "websub-events"
+        consumerId: "websub-events-consumer"
+    store:
+      solace:
+        url: "tcp://localhost:55554"
+        messageVpn: "default"
+        auth:
+          username: "admin"
+          password: "admin"
+        consumer:
+          receiveTimeout: 10.0
+        admin:
+          url: "http://localhost:8080/SEMP/v2/config"
+          timeout: 30.0
+          auth:
+            username: "admin"
+            password: "admin"
+    delivery:
+      timeout: 60.0
+      retry:
+        count: 3
+        interval: 3.0
+        backOffFactor: 2.0
+        maxWaitInterval: 20.0
+        statusCodes:
+          - 500
+          - 502
+          - 503
+    logging:
+      level: "INFO"
 
 ingress:
   hosts:
