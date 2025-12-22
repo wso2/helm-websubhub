@@ -3,7 +3,7 @@ deployment:
   image:
     repository: "wso2/websubhub"
     pullPolicy: IfNotPresent
-    tag: 1.0.0-M1
+    tag: 1.0.0-M1-RC3
   resources:
     requests:
       cpu: "1"
@@ -15,17 +15,12 @@ deployment:
     server:
       port: 9000
       id: "websubhub-1"
-      secureSocket:
-        enabled: true
-        keystore:
-          path: "conf/resources/wso2websubhub.jks"
-          password: "password"
     state:
       snapshot:
         url: "http://localhost:10001"
       events:
         topic: "websub-events"
-        consumerId: "websub-events-consumer"
+        consumerIdPrefix: "websub-events-consumer"
     store:
       solace:
         url: "tcp://localhost:55554"
@@ -52,10 +47,10 @@ deployment:
     logging:
       level: "INFO"
 
-ingress:
-  hosts:
-    - host: wso2-websubhub.local
-      paths:
-        - path: /hub
-          pathType: Prefix
-  tls: []
+# ingress:
+#   hosts:
+#     - host: wso2-websubhub.local
+#       paths:
+#         - path: /hub
+#           pathType: Prefix
+#   tls: []
