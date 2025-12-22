@@ -47,15 +47,6 @@ deployment:
     logging:
       level: "INFO"
 
-ingress:
-  enabled: true
-  className: "nginx"
-  hosts:
-    - host: websubhub.local
-      paths:
-        - path: /
-          pathType: Prefix
-  tls:
-   - secretName: websubhub-tls
-     hosts:
-       - websubhub.local
+  ingress:
+    host: "*.websubhub.wso2.dev"
+    secretName: "websubhub-wildcard-tls"
