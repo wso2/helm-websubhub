@@ -1,0 +1,28 @@
+[websubhub.consolidator.config.server]
+port = {{ .Values.deployment.config.server.port }}
+
+[websubhub.consolidator.config.state.snapshot]
+topic = "{{ .Values.deployment.config.state.snapshot.topic }}"
+consumerId = "{{ .Values.deployment.config.state.snapshot.consumerId }}"
+
+[websubhub.consolidator.config.state.events]
+topic = "{{ .Values.deployment.config.state.events.topic }}"
+consumerId = "{{ .Values.deployment.config.state.events.consumerId }}"
+
+[websubhub.consolidator.config.store.solace]
+url = "{{ .Values.deployment.config.store.solace.url }}"
+messageVpn = "{{ .Values.deployment.config.store.solace.messageVpn }}"
+auth.username = "{{ .Values.deployment.config.store.solace.auth.username }}"
+auth.password = "{{ .Values.deployment.config.store.solace.auth.password }}"
+
+[websubhub.consolidator.config.store.solace.consumer]
+receiveTimeout = {{ .Values.deployment.config.store.solace.consumer.receiveTimeout }}
+
+[websubhub.consolidator.config.store.solace.admin]
+url = "{{ .Values.deployment.config.store.solace.admin.url }}"
+timeout = {{ .Values.deployment.config.store.solace.admin.timeout }}
+auth.username = "{{ .Values.deployment.config.store.solace.admin.auth.username }}"
+auth.password = "{{ .Values.deployment.config.store.solace.admin.auth.password }}"
+
+[ballerina.log]
+level = "{{ .Values.deployment.config.logging.level }}"

@@ -1,0 +1,38 @@
+[websubhub.config.server]
+port = {{ .Values.deployment.config.server.port }}
+id = "{{ .Values.deployment.config.server.id }}"
+
+[websubhub.config.state.snapshot]
+url = "{{ .Values.deployment.config.state.snapshot.url }}"
+
+[websubhub.config.state.events]
+topic = "{{ .Values.deployment.config.state.events.topic }}"
+consumerIdPrefix = "{{ .Values.deployment.config.state.events.consumerIdPrefix }}"
+
+[websubhub.config.store.solace]
+url = "{{ .Values.deployment.config.store.solace.url }}"
+messageVpn = "{{ .Values.deployment.config.store.solace.messageVpn }}"
+auth.username = "{{ .Values.deployment.config.store.solace.auth.username }}"
+auth.password = "{{ .Values.deployment.config.store.solace.auth.password }}"
+
+[websubhub.config.store.solace.consumer]
+receiveTimeout = {{ .Values.deployment.config.store.solace.consumer.receiveTimeout }}
+
+[websubhub.config.store.solace.admin]
+url = "{{ .Values.deployment.config.store.solace.admin.url }}"
+timeout = {{ .Values.deployment.config.store.solace.admin.timeout }}
+auth.username = "{{ .Values.deployment.config.store.solace.admin.auth.username }}"
+auth.password = "{{ .Values.deployment.config.store.solace.admin.auth.password }}"
+
+[websubhub.config.delivery]
+timeout = {{ .Values.deployment.config.delivery.timeout }}
+
+[websubhub.config.delivery.retry]
+count = {{ .Values.deployment.config.delivery.retry.count }}
+interval = {{ .Values.deployment.config.delivery.retry.interval }}
+backOffFactor = {{ .Values.deployment.config.delivery.retry.backOffFactor }}
+maxWaitInterval = {{ .Values.deployment.config.delivery.retry.maxWaitInterval }}
+statusCodes = [{{ range $index, $code := .Values.deployment.config.delivery.retry.statusCodes }}{{if $index}}, {{end}}{{ $code }}{{end}}]
+
+[ballerina.log]
+level = "{{ .Values.deployment.config.logging.level }}"
