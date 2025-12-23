@@ -19,7 +19,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: websubhub-consolidator-svc-cm
+  name: {{ .Release.Name }}-svc-cm
   namespace : {{ .Release.Namespace }}
 data:
   Config.toml: {{ tpl (.Files.Get "confs/Config.toml") . | quote }}

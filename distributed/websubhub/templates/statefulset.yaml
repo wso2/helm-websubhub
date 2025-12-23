@@ -73,11 +73,11 @@ spec:
             - name: "BAL_CONFIG_FILES"
               value: "/home/wso2/conf/Config.toml"
           volumeMounts:
-            - name: "config-config-map-volume"
+            - name: {{ .Release.Name }}-config-map-volume
               mountPath: "/home/wso2/conf"
               readOnly: true
 
       volumes:
-        - name: "config-config-map-volume"
+        - name: {{ .Release.Name }}-config-map-volume
           configMap:
-            name: "websubhub-svc-cm"
+            name: {{ .Release.Name }}-svc-cm
